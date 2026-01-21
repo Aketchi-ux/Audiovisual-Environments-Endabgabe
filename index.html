@@ -1,13 +1,56 @@
 <!DOCTYPE html>
+<!-- HTML5 Deklaration -->
 <html lang="en">
+<!-- Kopfbereich -->
 <head>
+    <!-- Character-Encoding (UTF-8 = alle Sprachen möglich) -->
     <meta charset="UTF-8">
+    <!-- Responsive Design Meta-Tag (passt sich Bildschirmgröße an) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fireworks Simulation</title>
+    <!-- Seitentitel (wird im Browser-Tab angezeigt) -->
+    <title>3D Fireworks Visualization</title>
+    <!-- Verbindung zu CSS-Datei -->
     <link rel="stylesheet" href="style.css">
 </head>
+<!-- Hauptinhalt -->
 <body>
-    <canvas id="canvas"></canvas>
+    <!-- Haupt-Container mit flexbox (teilt in 3D-Canvas + Seitenpanel) -->
+    <div id="main-container">
+        <!-- Canvas-Container: hier wird die 3D-Szene gerendert -->
+        <div id="canvas-container"></div>
+        <!-- Rechtes Kontroll-Panel -->
+        <div id="right-panel">
+            <!-- Instruktions-Text -->
+            <div id="instructions">Klick für Feuerwerk</div>
+            <!-- Statistik-Box -->
+            <div id="stats">
+                <!-- Überschrift -->
+                <h3>Statistiken</h3>
+                <!-- Partikelzähler (wird in script.js aktualisiert) -->
+                <p>Partikel: <span id="particle-count">0</span></p>
+            </div>
+            <!-- Farb-Kontroll-Bereich -->
+            <div id="color-controls">
+                <!-- Überschrift -->
+                <h3>Farben</h3>
+                <!-- Container für Farbbuttons (wird in color-picker.js gefüllt) -->
+                <div id="color-palette"></div>
+                <!-- Button zum Alle Farben An/Aus toggling -->
+                <button id="toggle-all-btn" class="control-btn">Alle An/Aus</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ===== SCRIPT-TAGS (externe JavaScript-Dateien) ===== -->
+    <!-- Three.js Bibliothek von CDN (externe URL) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Audio-Modul: Soundsynthese -->
+    <script src="audio.js"></script>
+    <!-- Farb-Modul: Farbverwaltung -->
+    <script src="color-picker.js"></script>
+    <!-- 3D-Szenen-Modul: Three.js Setup -->
+    <script src="three-scene.js"></script>
+    <!-- Haupt-Modul: Koordination und Interaktion -->
     <script src="script.js"></script>
 </body>
 </html>

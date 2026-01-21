@@ -1,17 +1,351 @@
+/* ===== GLOBALE CSS RESET ===== */
 * {
+    /* Entferne Standard-Margin (äußerer Abstand) */
     margin: 0;
+    /* Entferne Standard-Padding (innerer Abstand) */
     padding: 0;
+    /* Box-sizing=border-box: Höhe/Breite inkludiert Border */
     box-sizing: border-box;
 }
 
+/* ===== BODY: Hauptelement =====*/
 body {
+    /* Breite = 100% des Viewports (Bildschirmbreite) */
     width: 100vw;
+    /* Höhe = 100% des Viewports (Bildschirmhöhe) */
     height: 100vh;
+    /* Verstecke Scrollbars */
     overflow: hidden;
+    /* Schriftfamilie */
+    font-family: Arial, sans-serif;
 }
 
-#canvas {
-    display: block;
+/* ===== HAUPT-CONTAINER: flexbox Layout =====*/
+#main-container {
+    /* Flex-Display = flexibles Layout */
+    display: flex;
+    /* Breite = voller Bildschirm */
     width: 100vw;
+    /* Höhe = voller Bildschirm */
     height: 100vh;
+    /* Abstand zwischen Elementen */
+    gap: 0;
+}
+
+/* ===== CANVAS-CONTAINER: 3D-Szenen-Bereich ===== */
+#canvas-container {
+    /* Nimmt verfügbaren Platz (flex: 1 = alles außer 250px) */
+    flex: 1;
+    /* Berechnet: 100% - rechtes Panel (250px) */
+    width: calc(100% - 250px);
+    /* Volle Höhe */
+    height: 100vh;
+}
+
+/* ===== RECHTES PANEL: Kontroll-Bereich ===== */
+#right-panel {
+    /* Feste Breite für Kontroll-Panel */
+    width: 250px;
+    /* Volle Höhe des Bildschirms */
+    height: 100vh;
+    /* Hintergrund: Gradient von schwarz zu dunkelblau */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 40, 0.9));
+    /* Linker Border (zwischen Panel und Canvas) */
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    /* Innerer Abstand */
+    padding: 20px;
+    /* Scrollbar nur vertikal wenn Inhalt überläuft */
+    overflow-y: auto;
+    /* Textfarbe = weiß */
+    color: #ffffff;
+    /* Schatten für Tiefenwirkung (rechts oben) */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== INSTRUKTIONS-TEXT ===== */
+#instructions {
+    /* Schriftgröße */
+    font-size: 18px;
+    /* Text-Schatten = glühender Effekt */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    /* Abstand nach unten zum nächsten Element */
+    margin-bottom: 30px;
+    /* Animation: Puls-Effekt (name, dauer, timing, wiederholung) */
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ===== STATISTIK-BOX ===== */
+#stats {
+    /* Halb-transparenter Hintergrund */
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtiler Border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Abgerundete Ecken */
+    border-radius: 8px;
+    /* Innerer Abstand */
+    padding: 15px;
+    /* Abstand nach unten */
+    margin-bottom: 20px;
+}
+
+/* ===== STATISTIK-ÜBERSCHRIFT ===== */
+#stats h3 {
+    /* Kleine Schrift */
+    font-size: 14px;
+    /* Alle Großbuchstaben */
+    text-transform: uppercase;
+    /* Abstände zwischen Buchstaben */
+    letter-spacing: 1px;
+    /* Abstand nach unten */
+    margin-bottom: 10px;
+    /* Cyan-Farbe für Kontrast */
+    color: #00ffff;
+}
+
+/* ===== STATISTIK-TEXT ===== */
+#stats p {
+    /* Kleine Schrift */
+    font-size: 13px;
+    /* Vertikaler Abstand zwischen Zeilen */
+    margin: 8px 0;
+    /* Monospace-Font (Courier) für technischen Look */
+    font-family: 'Courier New', monospace;
+}
+
+/* ===== STATISTIK-WERTE (Zahlen) ===== */
+#stats span {
+    /* Magenta-Farbe für Betonung */
+    color: #ff00ff;
+    /* Fetter Text */
+    font-weight: bold;
+}
+
+/* ===== FARB-KONTROLL-BEREICH ===== */
+#color-controls {
+    /* Halb-transparenter Hintergrund */
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtiler Border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Abgerundete Ecken */
+    border-radius: 8px;
+    /* Innerer Abstand */
+    padding: 15px;
+}
+
+/* ===== FARB-KONTROLL-ÜBERSCHRIFT ===== */
+#color-controls h3 {
+    /* Kleine Schrift */
+    font-size: 14px;
+    /* Alle Großbuchstaben */
+    text-transform: uppercase;
+    /* Abstände zwischen Buchstaben */
+    letter-spacing: 1px;
+    /* Abstand nach unten */
+    margin-bottom: 12px;
+    /* Gelb für Unterscheidung */
+    color: #ffff00;
+}
+
+/* ===== FARB-PALETTE: 2x4 Grid Layout ===== */
+#color-palette {
+    /* CSS Grid: 2 Spalten */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Abstand zwischen Elementen */
+    gap: 8px;
+    /* Abstand nach unten zum Button */
+    margin-bottom: 12px;
+}
+
+/* ===== FARB-BUTTONS ===== */
+.color-btn {
+    /* Nimmt 100% der Breite */
+    width: 100%;
+    /* Quadratisch (Breite = Höhe) */
+    aspect-ratio: 1;
+    /* Border Stil */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    /* Abgerundete Ecken */
+    border-radius: 6px;
+    /* Maus-Cursor ändert sich zu Zeiger */
+    cursor: pointer;
+    /* Sanfte Übergänge */
+    transition: all 0.3s ease;
+    /* Ermöglicht absolute Positionierung */
+    position: relative;
+    /* Inaktive Buttons sind halbtransparent */
+    opacity: 0.5;
+    /* Schatten */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== FARB-BUTTON HOVER-EFFEKT ===== */
+.color-btn:hover {
+    /* Wird beim Überfahren größer */
+    transform: scale(1.05);
+    /* Wird sichtbarer */
+    opacity: 0.8;
+}
+
+/* ===== FARB-BUTTON AKTIV-STATE ===== */
+.color-btn.active {
+    /* Voll sichtbar */
+    opacity: 1;
+    /* Heller Border */
+    border-color: rgba(255, 255, 255, 0.8);
+    /* Doppel-Schatten: außen + innen für Glow */
+    box-shadow: 0 0 15px currentColor, inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* ===== KONTROLL-BUTTON (Alle An/Aus) ===== */
+.control-btn {
+    /* Nimmt volle Breite */
+    width: 100%;
+    /* Innerer Abstand */
+    padding: 10px;
+    /* Gradient-Hintergrund: Magenta zu Cyan */
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    /* Schwarzer Text für Kontrast */
+    color: #000;
+    /* Kein Border */
+    border: none;
+    /* Abgerundete Ecken */
+    border-radius: 6px;
+    /* Fetter Text */
+    font-weight: bold;
+    /* Zeige Zeiger-Cursor */
+    cursor: pointer;
+    /* Sanfte Übergänge */
+    transition: all 0.3s ease;
+    /* Großbuchstaben */
+    text-transform: uppercase;
+    /* Kleine Schrift */
+    font-size: 11px;
+    /* Abstände zwischen Buchstaben */
+    letter-spacing: 1px;
+}
+
+/* ===== KONTROLL-BUTTON HOVER-EFFEKT ===== */
+.control-btn:hover {
+    /* Bewege Button nach oben */
+    transform: translateY(-2px);
+    /* Glühender Schatten */
+    box-shadow: 0 5px 20px rgba(255, 0, 255, 0.4);
+}
+
+/* ===== KONTROLL-BUTTON CLICK-EFFEKT ===== */
+.control-btn:active {
+    /* Beim Klick zurück zur Normalposition */
+    transform: translateY(0);
+}
+
+/* ===== PULSE-ANIMATION ===== */
+@keyframes pulse {
+    /* Start und Ende */
+    0%, 100% {
+        /* Voll sichtbar */
+        opacity: 1;
+    }
+    /* Mitte */
+    50% {
+        /* Halb sichtbar */
+        opacity: 0.7;
+    }
+}
+
+/* ===== RESPONSIVE DESIGN: Tablets (max 768px) ===== */
+@media (max-width: 768px) {
+    /* Ändere zu vertikalem Layout */
+    #main-container {
+        /* Elemente übereinander */
+        flex-direction: column;
+    }
+
+    /* Canvas-Container: oben, Panel: unten */
+    #canvas-container {
+        /* Volle Breite */
+        width: 100%;
+        /* Höhe = Gesamthöhe - Panel-Höhe (200px) */
+        height: calc(100vh - 200px);
+    }
+
+    /* Rechtes Panel: wird zum unteren Panel */
+    #right-panel {
+        /* Volle Breite */
+        width: 100%;
+        /* Feste Höhe unten */
+        height: 200px;
+        /* Kein linker Border mehr */
+        border-left: none;
+        /* Border oben statt links */
+        border-top: 2px solid rgba(255, 255, 255, 0.1);
+        /* Flex für horizontales Scrolling */
+        display: flex;
+        /* Spalten-Layout */
+        flex-direction: column;
+        /* Kein Gap */
+        gap: 0;
+        /* Weniger Padding auf kleineren Bildschirmen */
+        padding: 15px;
+        /* Erlaube horizontales Scrollen */
+        overflow-x: auto;
+        /* Vertikales Scrollen nicht nötig */
+        overflow-y: hidden;
+    }
+
+    /* Anpassungen für die einzelnen Elemente */
+    #instructions {
+        margin-bottom: 0;
+        min-width: fit-content;
+    }
+
+    #stats {
+        margin-bottom: 0;
+        min-width: fit-content;
+    }
+
+    #color-controls {
+        min-width: fit-content;
+    }
+}
+
+/* ===== RESPONSIVE DESIGN: Telefone (max 480px) ===== */
+@media (max-width: 480px) {
+    /* Panel passt sich Inhalt an */
+    #right-panel {
+        /* Höhe automatisch */
+        height: auto;
+        /* Weniger Padding */
+        padding: 10px;
+        /* Flex-Richtung: nebeneinander */
+        flex-direction: row;
+        /* Umbruch auf nächste Zeile wenn nötig */
+        flex-wrap: wrap;
+    }
+
+    /* Instruktion: volle Breite */
+    #instructions {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    /* Stats: flexibel */
+    #stats {
+        font-size: 12px;
+        flex: 1;
+        min-width: 120px;
+    }
+
+    #stats h3 {
+        font-size: 11px;
+    }
+
+    #stats p {
+        font-size: 10px;
+    }
+
+    /* Farbpalette: 4 Spalten statt 2 */
+    #color-palette {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
