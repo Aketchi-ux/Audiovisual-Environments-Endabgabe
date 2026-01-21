@@ -64,7 +64,7 @@ class Particle {
         this.radius = 4; // Partikel-Größe
     }
     
-    // Update: wird jeden Frame aufgerufen
+    // Update: wird jeden Frame aufgerufeng
     update() {
         // Erhöhe Alter
         this.age++;
