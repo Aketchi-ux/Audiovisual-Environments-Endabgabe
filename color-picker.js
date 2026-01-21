@@ -20,6 +20,20 @@ function getRandomColor() {
     return selectedColors[randomIndex];
 }
 
+// Alle aktiven Farben als Hex-Strings zurückgeben
+function getActiveColors() {
+    // Finde alle aktiven Farb-Buttons
+    const activeBtns = document.querySelectorAll('.color-btn.active');
+    
+    // Wenn keine Farben aktiv, gib leeres Array zurück
+    if (activeBtns.length === 0) {
+        return [];
+    }
+    
+    // Konvertiere alle aktiven Buttons zu Hex-Strings
+    return Array.from(activeBtns).map(btn => btn.dataset.hex);
+}
+
 // Color-Palette initialisieren - erstelle HTML-Buttons für jede Farbe
 function initColorPicker() {
     // Finde das HTML-Container-Element für die Farb-Buttons

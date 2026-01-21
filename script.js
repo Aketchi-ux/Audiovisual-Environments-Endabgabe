@@ -29,7 +29,7 @@ document.addEventListener('click', function(event) {
     // Spiele Feuerwerk-Sound ab (aus audio.js)
     playFireworkSound();
 
-    // Erstelle 3D Feuerwerk (aus three-scene.js)
+    // Erstelle 2D Feuerwerk (aus firework.js)
     // Übergebe Maus-Koordinaten
     createFireworks(event.clientX, event.clientY);
 });
@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===== INITIALISIERUNG: wird bei Seiten-Laden aufgerufen =====
-// Initialisiere 3D-Szene (aus three-scene.js)
-initThreeScene();
+// Initialisiere 2D-Feuerwerk-Szene (aus firework.js)
+initScene();
 // Initialisiere Farbwähler (aus color-picker.js)
 initColorPicker();
 // Aktualisiere Statistiken alle 100ms (0.1 Sekunden)
