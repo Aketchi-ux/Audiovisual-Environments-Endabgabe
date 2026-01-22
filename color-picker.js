@@ -50,7 +50,11 @@ function initColorPicker() {
         { hex: '#FF00FF', name: 'Magenta' },
         { hex: '#00FFFF', name: 'Cyan' },
         { hex: '#FFA500', name: 'Orange' },
-        { hex: '#FF1493', name: 'Pink' }
+        { hex: '#FF1493', name: 'Pink' },
+        { hex: '#32CD32', name: 'Lime' },
+        { hex: '#1E90FF', name: 'Dodger Blue' },
+        { hex: '#FFD700', name: 'Gold' },
+        { hex: '#FF69B4', name: 'Hot Pink' }
     ];
 
     // Iteriere durch jede Farbe und erstelle einen Button
