@@ -41,48 +41,48 @@ function playFireworkSound() {
 // Fallback: Synthesizer-Sound wenn echte Datei nicht verfügbar
 function playFireworkSoundSynthetic() {
     const now = audioContext.currentTime;
-    
+
     // ===== TIEFE BASS-EXPLOSION =====
     // Hauptknall - sehr tiefer Bass
     const bass = audioContext.createOscillator();
     const bassGain = audioContext.createGain();
     bass.connect(bassGain);
     bassGain.connect(analyser);
-    
+
     // Starte bei 120 Hz (sehr tief), falle zu 30 Hz
     bass.frequency.setValueAtTime(120, now);
     bass.frequency.exponentialRampToValueAtTime(30, now + 0.5);
     bass.type = 'sine';
-    
+
     // Lautstärke: Laut starten, schnell verblassen
     bassGain.gain.setValueAtTime(0.8, now);
     bassGain.gain.exponentialRampToValueAtTime(0.05, now + 0.5);
-    
+
     bass.start(now);
     bass.stop(now + 0.5);
-    
+
     // ===== KNALL-EFFEKT: Noise für Knistereffekt =====
     // Erstelle Noise-Buffer (0.4 Sekunden)
     const bufferSize = audioContext.sampleRate * 0.4;
     const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
     const data = buffer.getChannelData(0);
-    
+
     // Fülle mit Zufallswerten für Knall-Sound
     for (let i = 0; i < bufferSize; i++) {
         data[i] = Math.random() * 2 - 1;
     }
-    
+
     // Noise-Quelle
     const noise = audioContext.createBufferSource();
     const noiseGain = audioContext.createGain();
     noise.buffer = buffer;
     noise.connect(noiseGain);
     noiseGain.connect(analyser);
-    
+
     // Noise-Lautstärke
     noiseGain.gain.setValueAtTime(0.5, now);
     noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
-    
+
     noise.start(now);
 }
 
